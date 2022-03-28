@@ -1,6 +1,6 @@
 import vk_api
 import vk_api.bot_longpoll
-tk = "3230fc14d6a45fbdcf1fe1cc947f4680e1a3cf7713fe66c054be5f5ece32028d0d194ea253400fcfa67c8"
+tk = ""
 vk = vk_api.VkApi(token=tk)
 api = vk.get_api()
 au_genre={
