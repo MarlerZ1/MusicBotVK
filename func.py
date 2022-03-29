@@ -3,7 +3,7 @@ import vk_api.bot_longpoll
 tk = ""
 vk = vk_api.VkApi(token=tk)
 api = vk.get_api()
-au_genre={
+au_genre = {
     '1':'Rock',
     '2':'Pop',
     '3':'Rap & Hip-Hop',
@@ -38,20 +38,20 @@ def removing_id (request):
            request = request[33:]
     elif 'musicbot' in request.lower():
         if ', ' in request:
-            request= request[26:]
+            request = request[26:]
         else:
             request = request[25:]  
     return request
     
-def audio_func(event,attachments):
-    score=0
+def audio_func(event, attachments):
+    score = 0
     for p in attachments:
         if p['type'] == 'audio':
-            score+=1
-            s_link=api.utils.getShortLink(url=p['audio']['url'],private=0)['short_url']
+            score += 1
+            s_link = api.utils.getShortLink(url = p['audio']['url'], private = 0)['short_url']
             try:
-                write_msg( event.message.peer_id,'Автор - '+p['audio']['artist'] +'\n'+ 'Название - '+ p['audio']['title']+ '\nЖанр - '+au_genre[str(p['audio']['genre_id'])]+'\nСсылка - '+ s_link)
+                write_msg( event.message.peer_id,'Автор - ' + p['audio']['artist'] + '\n'+ 'Название - ' + p['audio']['title'] + '\nЖанр - ' + au_genre[str(p['audio']['genre_id'])]+'\nСсылка - ' + s_link)
             except:
-                write_msg( event.message.peer_id,'Автор - '+p['audio']['artist'] +'\n'+ 'Название - '+ p['audio']['title']+ '\nСсылка - '+ s_link)
+                write_msg( event.message.peer_id,'Автор - '+ p['audio']['artist'] + '\n' + 'Название - ' + p['audio']['title'] + '\nСсылка - ' + s_link)
     if score==0:                  
         write_msg( event.message.peer_id, "Не поняла вашего ответа...")   
